@@ -7,35 +7,38 @@
   <meta charset="UTF-8">
   <title>Exciting Cities</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  <style type="text/css">
-    button,
+  <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <!-- button,
     div,
     form,
     input {
       margin: 10px;
-    }
+    } -->
   </style>
 </head>
 
 <body>
-
-    <div class = "row" "button-row"></div>
+    <div class = "row" id = "title-row"><strong>Explore the World's Cities</strong></div>
+    <div class = "row" id = "button-row"></div>
     <div class = "row">
         <div class = "col-lg-8" id = "gifs-div"></div>
         <div class = "col-lg-4" id = "add-box">
             <form id="city-form">
-                <label for="city-input">Explore A City!</label>
-                <input type="text" id="new-city"><br>
+                <label for="city-input">See A City!</label>
+                <input type="text" id="city-input"><br>
         
                 <input id="add-city" type="submit" value="Your City">
             </form>
+        </div>
+    </div>
+
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script type="text/javascript">
             var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
         
                 var cities = ["Chicago", "New York", "Los Angeles", "Boston", "San Francisco", "Rome", "Florence", "Paris", "London", "Beijing", "Shanghai", "Seoul", "Tokyo", 
                 "Hanoi", "Bangkok", "Lhasa", "Accra", "Nairobi", "Cairo", "Tunis", "Marrakech", "Algiers", "Sydney", "Mexico City", "Sao Paulo"]
-        
+
                 function renderButtons() {
         
                     $("#button-row").empty();
@@ -49,13 +52,37 @@
                     }
                 }
         
-                $("#add-city").on("click", function(event) {
+                $("#new-city").on("click", function(event) {
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                        }).then(function(response) {
+                            var cityDiv = $("<div class = 'city'>");;
+                            var rating = response.rating; 
+                            var cityPara = $("<p>").text("Rating: " + rating);
+                            cityDiv.append(cityPara);
+                            $("#gifs-div").prepend(cityDiv);
+                        })
+        
+
                         event.preventDefault();
                         var city = $("#city-input").val().trim();
                         cities.push(city);
                         renderButtons();
+                        console.log("city-input");
                     });
-        
+
+
+                    function displayCityGifs(){
+                    var city = $(this).attr("data-name");
+                    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
+                    console.log(this);
+                }
+
+               
+                renderButtons();
+            </script>
+</body>
   
         
    
