@@ -2,21 +2,6 @@ body {
     padding-left: 20px;
 }
 
-#gifs-div {
-   
-}
-
-#add-box {
-
-}
-
-#city-form {
- 
-}
-
-#button-row {
-}
-
 .city {
     margin: 5px;
 
@@ -27,4 +12,10 @@ body {
     color: indigo;
     font-weight: bolder;
 }
+
+#callOut {
+    color: hotpink;
+    font-weight: bold;
+}
+
 

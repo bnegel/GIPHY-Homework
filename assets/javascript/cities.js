@@ -8,7 +8,7 @@ var topic = ["Chicago", "New York", "Los Angeles", "Boston", "San Francisco", "R
         $("#button-row").empty();
         for (var i = 0; i < topic.length; i++) {
         var newButton = $("<button>");
-        newButton.addClass("city", "btn btn-info");
+        newButton.addClass("city", "btn btn-danger");
         newButton.attr("data-name", topic[i]);
         newButton.text(topic[i]);
         $("#button-row").append(newButton);
